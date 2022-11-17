@@ -50,6 +50,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
       - run: pnpm install
+      - name: export the package
       - run: pnpm export
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
