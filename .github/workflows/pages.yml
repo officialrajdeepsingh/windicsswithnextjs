@@ -26,4 +26,4 @@ jobs:
         env:
           BUILD_DIR: .
           PAGES_BRANCH: sample-site-build
-          TOKEN: ${{ secrets.TOKEN }}
+          TOKEN: ${{ secrets.PAGES_TOKEN_FOR_WINDICSS_NEXTJS }}
