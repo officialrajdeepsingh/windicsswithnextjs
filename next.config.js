@@ -9,8 +9,6 @@ module.exports = {
     config.plugins.push(new WindiCSSWebpackPlugin())
     return config
   },
-  assetPrefix: "/windicsswithnextjs",
-  basePath: "/windicsswithnextjs",
   images: {
     loader: 'imgix',
     path: 'the "domain" of your Imigix source',
