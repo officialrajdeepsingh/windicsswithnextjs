@@ -10,11 +10,10 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v3
-        working-directory: build
       - name: 'Build only' 
         uses: tsg-iitkgp/next-build-export-action@v1.1
         env:
-          BUILD_DIR: build
+          BUILD_DIR: ${{ env.working-directory }}
           BUILD_ONLY: true
   build_and_deploy:
     runs-on: ubuntu-latest
@@ -25,6 +24,6 @@ jobs:
       - name: 'Build and deploy'
         uses: tsg-iitkgp/next-build-export-action@v1.1
         env:
-          BUILD_DIR: build
+          BUILD_DIR: ${{ env.working-directory }}
           PAGES_BRANCH: sample-site-build
           TOKEN: ${{ secrets.PAGES_TOKEN_FOR_WINDICSS_NEXTJS }}
