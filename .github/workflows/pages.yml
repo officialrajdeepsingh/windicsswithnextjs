@@ -8,7 +8,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    permissions:
+       contents: write
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@v3
@@ -30,10 +31,8 @@ jobs:
 
       - name: Deploy
         # https://github.com/JamesIves/github-pages-deploy-action
-        uses: JamesIves/github-pages-deploy-action@4.4.0
+        uses: JamesIves/github-pages-deploy-action@4
         with:
           branch: gh-pages
           folder: out
-
-
           TOKEN: ${{ secrets.PAGES_TOKEN_FOR_WINDICSS_NEXTJS }}
