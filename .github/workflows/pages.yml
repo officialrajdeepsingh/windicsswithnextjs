@@ -1,40 +1,14 @@
-on:
-  push:
-    branches:
-      - main 
-  pull_request:
+on: push
+name: Build, export and publish to branch on push
 jobs:
-  build:
+  build-export-and-deploy:
+    name: Build, export and publish sample site to the `sample-site-build` branch
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app
-    if: github.ref != 'refs/heads/main'
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v3
-
-      - name: 'Build only' 
+      - uses: actions/checkout@v2
+      - name: Build with the latest action rev
         uses: tsg-iitkgp/next-build-export-action@v1.1
-
         env:
-          BUILD_DIR: ${{ env.working-directory }}
-          BUILD_ONLY: true
-
-  build_and_deploy:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v3
-
-      - name: 'Build and deploy'
-        uses: tsg-iitkgp/next-build-export-action@v1.1
-
-        env:
-          BUILD_DIR: ${{ env.working-directory }}
+          BUILD_DIR: .
           PAGES_BRANCH: sample-site-build
           TOKEN: ${{ secrets.PAGES_TOKEN_FOR_WINDICSS_NEXTJS }}
